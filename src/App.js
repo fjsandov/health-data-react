@@ -1,19 +1,32 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from './images/cdc.svg';
+
+import 'bootstrap/dist/css/bootstrap.css';
+import 'react-select-plus/dist/react-select-plus.css';
+
 import './App.css';
+
+import { Container, Row, Col } from 'reactstrap';
+import CountyDetail from './components/CountyDetail';
+import CountySelect from './components/CountySelect';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <Container className='App'>
+        <Row className='App-header'>
+          <Col>
+            <img src={logo} className="App-logo" alt="logo" />
+            <h1 className="App-title">Obesity, inactivity and diabetes data by county 2004 - 2013</h1>
+          </Col>
+        </Row>
+        <Row className='App-body'>
+          <Col>
+            <CountySelect />
+            <CountyDetail />
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }
