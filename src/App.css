@@ -15,3 +15,13 @@
 .county-select .selector {
   width: 100%;
 }
+
+.county-detail table th {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.indicator-table button.btn {
+  width: 100%;
+}
+
