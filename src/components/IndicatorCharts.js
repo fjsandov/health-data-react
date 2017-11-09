@@ -4,6 +4,17 @@ import PercentChart from "./PercentChart";
 import SamplesBarChart from "./SamplesBarChart";
 
 export default class IndicatorCharts extends React.Component {
+
+    validPercentChartEntry(entry) {
+        return entry['Percent'] !== -1 && 
+            entry['Lower confidence limit'] !== -1 &&
+            entry['Upper confidence limit'] !== -1;
+    }
+
+    validNumberChartEntry(entry) {
+        return entry['Samples'] !== -1;
+    }
+
     render() {
         let percentChartData = [];
         let ageAdjustedPercentChartData = [];
@@ -29,9 +40,15 @@ export default class IndicatorCharts extends React.Component {
                 "Samples": singleYearData['number']
             };
             
-            percentChartData.push(percentChartDataEntry);
-            ageAdjustedPercentChartData.push(ageAdjustedPercentChartDataEntry);
-            numberChartData.push(numberChartDataEntry);
+            if(this.validPercentChartEntry(percentChartDataEntry)) {
+                percentChartData.push(percentChartDataEntry);
+            }
+            if(this.validPercentChartEntry(ageAdjustedPercentChartDataEntry)) {
+                ageAdjustedPercentChartData.push(ageAdjustedPercentChartDataEntry);
+            }
+            if(this.validNumberChartEntry(numberChartDataEntry)) {
+                numberChartData.push(numberChartDataEntry);
+            }
         });
 
         let chartsHeight = 300; /* IMPORTANT: Change this value to pick the height of the charts */

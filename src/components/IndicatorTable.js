@@ -12,6 +12,10 @@ export default class IndicatorTable extends React.Component {
     this.setState({ collapse: !this.state.collapse });
   }
 
+  cellData(value) {
+      return (value === -1) ? 'No Data' : value;
+  }
+
   render() {
     let buttonText = this.state.collapse ? "Hide table" : "Show table with data";
     let buttonColor = this.state.collapse ? "default" : "info";
@@ -44,16 +48,16 @@ export default class IndicatorTable extends React.Component {
                             return(
                                 <tr key={this.props.indicator_name+'-'+indicator.year}>
                                     <th scope="row">{indicator.year}</th>
-                                    <td>{indicator.number}</td>
-                                    <td>{indicator.percent}</td>
-                                    <td>{indicator.lower_confidence_limit}</td>
-                                    <td>{indicator.upper_confidence_limit}</td>
-                                    <td>{indicator.age_adjusted_percent}</td>
-                                    <td>{indicator.age_adjusted_lower_confidence_limit}</td>
-                                    <td>{indicator.age_adjusted_upper_confidence_limit}</td>
+                                    <td>{this.cellData(indicator.number)}</td>
+                                    <td>{this.cellData(indicator.percent)}</td>
+                                    <td>{this.cellData(indicator.lower_confidence_limit)}</td>
+                                    <td>{this.cellData(indicator.upper_confidence_limit)}</td>
+                                    <td>{this.cellData(indicator.age_adjusted_percent)}</td>
+                                    <td>{this.cellData(indicator.age_adjusted_lower_confidence_limit)}</td>
+                                    <td>{this.cellData(indicator.age_adjusted_upper_confidence_limit)}</td>
                                 </tr>
                             );
-                        })}               
+                        })}
                     </tbody>
                 </Table>
             </CardBody>
