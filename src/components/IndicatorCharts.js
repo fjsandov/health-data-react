@@ -1,7 +1,7 @@
 import React from 'react';
-import { ResponsiveContainer, BarChart, Bar, CartesianGrid, XAxis, YAxis, Tooltip, Label } from 'recharts';
 import { Container, Row, Col } from 'reactstrap';
 import PercentChart from "./PercentChart";
+import SamplesBarChart from "./SamplesBarChart";
 
 export default class IndicatorCharts extends React.Component {
     render() {
@@ -39,24 +39,14 @@ export default class IndicatorCharts extends React.Component {
         return (
             <Container className="indicator-charts">
                 <Row>
-                    <Col>
+                    <Col xs="4" sm="4">
                         <PercentChart data={percentChartData} chartHeight={chartsHeight}/>
                     </Col>
-                    <Col>
+                    <Col xs="4" sm="4">
                         <PercentChart data={ageAdjustedPercentChartData} chartHeight={chartsHeight}/>
                     </Col>
-                    <Col>
-                        <ResponsiveContainer width="100%" height={chartsHeight}>
-                            <BarChart data={numberChartData}
-                                margin={{top: 5, right: 30, left: 20, bottom: 5}}>
-                                <XAxis dataKey="Year"/>
-                                <YAxis/>
-                                <Label value="Samples" position="top" />
-                                <CartesianGrid strokeDasharray="3 3"/>
-                                <Tooltip/>
-                                <Bar dataKey="Samples" fill="#8884d8" />
-                            </BarChart>
-                        </ResponsiveContainer>
+                    <Col xs="4" sm="4">
+                        <SamplesBarChart data={numberChartData} chartHeight={chartsHeight} />
                     </Col>
                 </Row>
             </Container>

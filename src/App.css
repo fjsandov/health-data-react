@@ -16,12 +16,25 @@
   width: 100%;
 }
 
-.county-detail table th {
+.county-detail table th,
+.county-detail table td {
   text-align: center;
   vertical-align: middle;
 }
 
 .indicator-table button.btn {
   width: 100%;
+}
+
+.county-detail {
+  margin-top: 30px;
+}
+
+.indicator-charts {
+  margin: 15px 0;
+}
+
+.capitalize {
+  text-transform: capitalize;
 }
 
