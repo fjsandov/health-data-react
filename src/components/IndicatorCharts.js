@@ -56,13 +56,13 @@ export default class IndicatorCharts extends React.Component {
         return (
             <Row className="indicator-charts">
                 <Col md="4">
-                    <PercentChart data={percentChartData} chartHeight={chartsHeight}/>
+                    <SamplesBarChart data={numberChartData} chartHeight={chartsHeight} chartTitle='Samples'/>
                 </Col>
                 <Col md="4">
-                    <PercentChart data={ageAdjustedPercentChartData} chartHeight={chartsHeight}/>
+                    <PercentChart data={percentChartData} chartHeight={chartsHeight} chartTitle='Data'/>
                 </Col>
                 <Col md="4">
-                    <SamplesBarChart data={numberChartData} chartHeight={chartsHeight} />
+                    <PercentChart data={ageAdjustedPercentChartData} chartHeight={chartsHeight} chartTitle='Age adjusted data'/>
                 </Col>
             </Row>
         );

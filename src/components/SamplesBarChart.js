@@ -6,10 +6,11 @@ export default class SamplesBarChart extends React.Component {
         return (
             <ResponsiveContainer width="100%" height={this.props.chartHeight} className="samples-bar-chart">
                 <BarChart data={this.props.data}
-                    margin={{top: 5, right: 30, left: 20, bottom: 5}}>
-                    <XAxis dataKey="Year"/>
+                    margin={{top: 5, right: 30, left: 20, bottom: 25}}>
+                    <XAxis dataKey="Year">
+                        <Label value={this.props.chartTitle} position="bottom" />
+                    </XAxis>
                     <YAxis/>
-                    <Label value="Samples" position="top" />
                     <CartesianGrid strokeDasharray="3 3"/>
                     <Tooltip/>
                     <Bar dataKey="Samples" fill="#8884d8" />
