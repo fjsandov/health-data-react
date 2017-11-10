@@ -1,24 +1,32 @@
 import React from 'react';
 import Select from 'react-select-plus';
+import Toggle from 'react-toggle';
 import CountyStore from '../stores/CountyStore';
+import { Row, Col } from 'reactstrap';
 
 export default class CountySelect extends React.Component {
     constructor() {
         super();
         this.state = {
             counties: [],
-            currentCounty: null
+            currentCounty: null,
+            onlyFavorites: false
         };
         this._onCountiesChange = this.onCountiesChange.bind(this);
         this._onCountySelect = this.onCountySelect.bind(this);
+        this._toggleOnlyFavorites = this.toggleOnlyFavorites.bind(this);
+
+        this._onFavoriteCountiesChange = this.onFavoriteCountiesChange.bind(this);
     }
 
     componentWillMount() {
-        CountyStore.addChangeListListener(this._onCountiesChange);
+        CountyStore.addChangeCountiesListener(this._onCountiesChange);
+        CountyStore.addChangeFavoriteCountiesListener(this._onFavoriteCountiesChange);
     }
-
+    
     componentWillUnmount() {
-        CountyStore.removeChangeListListener(this._onCountiesChange);
+        CountyStore.removeChangeCountiesListener(this._onCountiesChange);
+        CountyStore.removeChangeFavoriteCountiesListener(this._onFavoriteCountiesChange);
     }
 
     componentDidMount() {
@@ -26,7 +34,9 @@ export default class CountySelect extends React.Component {
     }
 
     onCountiesChange() {
-        let counties = CountyStore.getCounties();
+        let counties = this.state.onlyFavorites ? CountyStore.getFavoriteCounties() : 
+            CountyStore.getCounties();
+        CountyStore.clearCurrentCounty();
         this.setState({counties: counties, currentCounty: null});
     }
 
@@ -38,10 +48,29 @@ export default class CountySelect extends React.Component {
         }
     }
 
+    onFavoriteCountiesChange() {
+        if(this.state.onlyFavorites) {
+            this._onCountiesChange();
+        }
+    }
+
+    toggleOnlyFavorites() {
+        // the logic looks reversed because at the end of the method we 
+        // will toggle the value of onlyFavorites
+        let counties = this.state.onlyFavorites ? CountyStore.getCounties() : 
+            CountyStore.getFavoriteCounties();
+        CountyStore.clearCurrentCounty();
+        this.setState({
+            counties: counties,
+            currentCounty: null,
+            onlyFavorites: !this.state.onlyFavorites
+        });
+    }
+
     render() {
         let stateNames = this.state.counties.map((county) => county.state);        
         // removing duplicate states
-        stateNames = Array.from(new Set(stateNames));        
+        stateNames = Array.from(new Set(stateNames));
         // sorting the states alphabetically
         stateNames = stateNames.sort((a, b) => a.localeCompare(b));
 
@@ -62,15 +91,21 @@ export default class CountySelect extends React.Component {
         });
         
         return (
-            <div className="county-select">
-                <Select className="selector"
-                    value={this.state.currentCounty === null ? '' : this.state.currentCounty._id}
-                    options={data}
-                    placeholder={"Select a county"}
-                    clearable={false}
-                    onChange={this._onCountySelect}
-                />
-            </div>
+            <Row className='county-select'>
+                <Col>                        
+                    <Select className='county-selector'
+                        value={this.state.currentCounty === null ? '' : this.state.currentCounty._id}
+                        options={data}
+                        placeholder={"Select a county"}
+                        clearable={false}
+                        onChange={this._onCountySelect}
+                    />
+                    <div className="show-only-favorites">
+                        <Toggle id='favorites-toggle' icons={false} onChange={this._toggleOnlyFavorites} />
+                        <label htmlFor='favorites-toggle'>Show favorite counties only</label>
+                    </div>
+                </Col>
+            </Row>
         );
     }
 }

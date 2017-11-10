@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import logo from './images/cdc.svg';
+import logo from './images/cdc.png';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'react-select-plus/dist/react-select-plus.css';
+import "react-toggle/style.css";
 
 import './App.css';
 
@@ -13,14 +14,17 @@ import CountySelect from './components/CountySelect';
 class App extends Component {
   render() {
     return (
-      <Container className='App'>
-        <Row className='App-header'>
-          <Col>
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Obesity, inactivity and diabetes data by county 2004 - 2013</h1>
+      <Container className='app'>
+        <Row className='app-header'>
+          <Col md="2">
+            <img src={logo} alt="logo" />            
+          </Col>
+          <Col md="10" className="title">
+            <h1>Counties diabetes, inactivity and obesity data</h1>
+            <h3>2004 - 2013</h3>
           </Col>
         </Row>
-        <Row className='App-body'>
+        <Row className='app-body'>
           <Col>
             <CountySelect />
             <CountyDetail />

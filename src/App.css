@@ -1,29 +1,34 @@
-.App-logo {
-  height: 80px;
+.app {
+  font-family: 'Roboto';
 }
 
-.App-header {
-  text-align: center;
-  height: 150px;
-  padding: 20px;
+.app-header {
+  padding: 20px 0;
 }
 
-.App-title {
-  font-size: 1.5em;
-}
-
-.county-select .selector {
+.app-header img {
   width: 100%;
+  height: auto;
 }
 
-.county-detail table th,
-.county-detail table td {
+.app-header .title {
   text-align: center;
+  height: inherit;
+  vertical-align: center;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.county-select .show-only-favorites {
+  margin-top: 10px;
+  float: right;
+}
+
+.react-toggle {
+  margin-right: 8px;
   vertical-align: middle;
-}
-
-.indicator-table button.btn {
-  width: 100%;
 }
 
 .county-detail {
@@ -34,7 +39,14 @@
   margin: 15px 0;
 }
 
-.capitalize {
-  text-transform: capitalize;
+.indicator-table button.btn {
+  width: 100%;
 }
+
+.indicator-table table th,
+.indicator-table table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
 

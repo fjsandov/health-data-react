@@ -30,7 +30,7 @@ export default class IndicatorTable extends React.Component {
                     <thead>
                         <tr>
                             <th rowSpan="2">Year</th>
-                            <th rowSpan="2">Number</th>
+                            <th rowSpan="2">Samples</th>
                             <th colSpan="3" scope="colgroup">Data</th>
                             <th colSpan="3" scope="colgroup">Age adjusted data</th>
                         </tr>

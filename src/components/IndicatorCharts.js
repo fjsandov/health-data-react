@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import PercentChart from "./PercentChart";
 import SamplesBarChart from "./SamplesBarChart";
 
@@ -54,19 +54,17 @@ export default class IndicatorCharts extends React.Component {
         let chartsHeight = 300; /* IMPORTANT: Change this value to pick the height of the charts */
 
         return (
-            <Container className="indicator-charts">
-                <Row>
-                    <Col xs="4" sm="4">
-                        <PercentChart data={percentChartData} chartHeight={chartsHeight}/>
-                    </Col>
-                    <Col xs="4" sm="4">
-                        <PercentChart data={ageAdjustedPercentChartData} chartHeight={chartsHeight}/>
-                    </Col>
-                    <Col xs="4" sm="4">
-                        <SamplesBarChart data={numberChartData} chartHeight={chartsHeight} />
-                    </Col>
-                </Row>
-            </Container>
+            <Row className="indicator-charts">
+                <Col md="4">
+                    <PercentChart data={percentChartData} chartHeight={chartsHeight}/>
+                </Col>
+                <Col md="4">
+                    <PercentChart data={ageAdjustedPercentChartData} chartHeight={chartsHeight}/>
+                </Col>
+                <Col md="4">
+                    <SamplesBarChart data={numberChartData} chartHeight={chartsHeight} />
+                </Col>
+            </Row>
         );
     }
 }
